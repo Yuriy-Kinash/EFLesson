@@ -19,6 +19,7 @@ namespace Persistance.Repositories.Products
                 BrandId = product.BrandId,
                 CategoryId = product.CategoryId  
              };
+
             await _dbContext.Products.AddAsync(addedProduct);
             await _dbContext.SaveChangesAsync();
         }
@@ -33,12 +34,14 @@ namespace Persistance.Repositories.Products
                     BrandId = x.BrandId,
                     CategoryId = x.CategoryId
                 }));
+
             await _dbContext.SaveChangesAsync();
         }
 
         public async Task UpdateNameAsync(string name, int productId)
         {
             Product product = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == productId);
+
             if (product != null)
             {
                 product.Name = name;
@@ -49,6 +52,7 @@ namespace Persistance.Repositories.Products
         public async Task UpdatePictureAsync(int productId, string picture)
         {
             Product product = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == productId);
+
             if (product != null)
             {
                 product.Picture = picture;
@@ -73,6 +77,7 @@ namespace Persistance.Repositories.Products
         public async Task<double> GetPriceAsync(int id)
         {
             Product product = await _dbContext.Products.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+
             return product.Price;
         }
 

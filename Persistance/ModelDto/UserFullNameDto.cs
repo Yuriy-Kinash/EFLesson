@@ -1,5 +1,4 @@
-﻿
-namespace Persistance.Repositories.Users
+﻿namespace Persistance.Repositories.Users
 {
     public class UserFullNameDto
     {

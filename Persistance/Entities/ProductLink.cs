@@ -1,5 +1,4 @@
-﻿
-namespace Persistance.Entities
+﻿namespace Persistance.Entities
 {
     public class ProductLink
     {
