@@ -21,6 +21,7 @@ namespace Persistance.Repositories.Tariffs
                ValidityPeriod = tariff.Period,
                TariffDescriptionId = tariff.TariffDescriptionId,
            };
+
            await _dbContext.AddAsync(addedTariff);
            await _dbContext.SaveChangesAsync();
         }
@@ -29,6 +30,7 @@ namespace Persistance.Repositories.Tariffs
         {
             Tariff tariff = await _dbContext.Tariffs.FirstOrDefaultAsync(x => x.Id == tariffId);
             tariff.Price = price;
+
             _dbContext.Update(tariff);
             await _dbContext.SaveChangesAsync();
         }
@@ -36,18 +38,21 @@ namespace Persistance.Repositories.Tariffs
         public async Task<double> GetPriceAsync(int tariffId)
         {
             Tariff tariff = await _dbContext.Tariffs.AsNoTracking().FirstOrDefaultAsync(x => x.Id == tariffId);
+
             return tariff.Price;
         }
 
         public async Task<int> GetValidityPeriodAsync(int tariffId)
         {
             Tariff tariff = await _dbContext.Tariffs.AsNoTracking().FirstOrDefaultAsync(x => x.Id == tariffId);
+
             return (int)tariff.ValidityPeriod;
         }
 
         public async Task<TariffDescriptionDto> GetDescriptionByIdAsync(int tariffId)
         {
             Tariff tariff = await _dbContext.Tariffs.AsNoTracking().FirstOrDefaultAsync(x => x.Id == tariffId);
+
             return new TariffDescriptionDto()
             {
                 CountOfChecks = tariff.TariffDescription.CountOfChecks,
@@ -92,7 +97,7 @@ namespace Persistance.Repositories.Tariffs
                     {
                         FirstName = x.Profile.FirstName,
                         LastName = x.Profile.LastName,
-                        Age = x.Profile.Age,
+                       // Age = x.Profile.Age,
                         Email = x.Profile.Email,
                         Phone = x.Profile.Phone,
                     })

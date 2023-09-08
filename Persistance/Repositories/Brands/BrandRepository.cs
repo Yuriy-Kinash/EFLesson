@@ -14,6 +14,7 @@ namespace Persistance.Repositories.Brands
         public async Task AddAsync(BrandDto brand)
         {
             Brand addedBrand = new Brand() { Name = brand.Name, Link = brand.Link };
+
             await _dbContext.Brands.AddAsync(addedBrand);
             await _dbContext.SaveChangesAsync();
         }
@@ -21,6 +22,7 @@ namespace Persistance.Repositories.Brands
         public async Task<string> GetLinkAsync(int brandId)
         {
             Brand brand = await _dbContext.Brands.AsNoTracking().FirstOrDefaultAsync(x => x.Id == brandId);
+
             return brand.Link;
         }
 
@@ -40,12 +42,14 @@ namespace Persistance.Repositories.Brands
         {
             Product product = await _dbContext.Products.AsNoTracking().FirstOrDefaultAsync(x => x.Id == productId);
             Brand brand = new Brand() { Id = product.BrandId};
+
             return new BrandDto() { Name = brand.Name,  Link = brand.Link };
         }
 
         public async Task<BrandDto> GetByNameAsync(string name)
         {
             Brand brand = await _dbContext.Brands.AsNoTracking().FirstOrDefaultAsync(x => x.Name == name);
+
             if (brand != null)
                 return new BrandDto() { Name = brand.Name, Link = brand.Link};
             else return null;

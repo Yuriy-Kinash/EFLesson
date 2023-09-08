@@ -1,5 +1,4 @@
-﻿
-namespace Persistance.Repositories.Brands
+﻿namespace Persistance.Repositories.Brands
 {
     public class BrandDto
     {
