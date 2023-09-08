@@ -1,5 +1,4 @@
-﻿
-namespace Persistance.Repositories.Products
+﻿namespace Persistance.Repositories.Products
 {
     public interface IProductRepository
     {

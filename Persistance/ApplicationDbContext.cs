@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Persistance.Entities;
 using Persistance.Entities.Configuration;
 using System.Text.Json;
-
 namespace Persistance
 {
     public class ApplicationDbContext : DbContext

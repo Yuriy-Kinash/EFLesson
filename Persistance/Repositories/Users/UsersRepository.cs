@@ -26,6 +26,7 @@ namespace Persistance.Repositories.Users
                     Age = user.Profile.Age
                 }
             };
+
             await _dbContext.Users.AddAsync(addedUser);
             await _dbContext.SaveChangesAsync();
         }
@@ -46,24 +47,28 @@ namespace Persistance.Repositories.Users
                         Age = user.Profile.Age
                     }
             }));
+
             await _dbContext.SaveChangesAsync();
         }
 
         public async Task<bool> CheckPasswordAsync(string password, int userId)
         {
            User user = await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == userId);
+
            return user.Password == password;
         }
 
         public async Task<int> GetAgeAsync(int userId)
         {
             UserProfile user = await _dbContext.UserProfiles.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == userId);
+
             return user.Age;
         }
 
         public async Task<UserFullNameDto> GetFullNameAsync(int userId)
         {
             UserProfile userProfile = await _dbContext.UserProfiles.AsNoTracking().FirstOrDefaultAsync(x => x.Id == userId);
+
             return new UserFullNameDto()
             {
                 FirstName = userProfile.FirstName,
@@ -74,6 +79,7 @@ namespace Persistance.Repositories.Users
         public async Task<UserContactDto> GetContactAsync(int userId)
         {
             UserProfile userProfile = await _dbContext.UserProfiles.AsNoTracking().FirstOrDefaultAsync(x => x.Id == userId);
+
             return new UserContactDto()
             {
                 Email = userProfile.Email,
@@ -84,6 +90,7 @@ namespace Persistance.Repositories.Users
         public async Task<UserProfileDto> GetProfileInformationAsync(int userId)
         {
             UserProfile userProfile = await _dbContext.UserProfiles.AsNoTracking().FirstOrDefaultAsync(x => x.Id == userId);
+
             return new UserProfileDto()
             {
                 FirstName = userProfile.FirstName,
@@ -97,12 +104,14 @@ namespace Persistance.Repositories.Users
         public async Task<string> GetTariffAsync(int userId)
         {
             User user = await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == userId);
+
             return user.Tariff.Name;
         }
 
         public async Task<bool> CheckTariffPurchasedAsync(int userId)
         {
             User user = await _dbContext.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Id == userId);
+
             if (user.TariffId >= 0) return true;
             else return false;
         }

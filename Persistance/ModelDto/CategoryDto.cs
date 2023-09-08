@@ -1,5 +1,4 @@
-﻿
-namespace Persistance.Repositories.Categories
+﻿namespace Persistance.Repositories.Categories
 {
     public class CategoryDto
     {

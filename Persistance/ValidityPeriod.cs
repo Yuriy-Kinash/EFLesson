@@ -1,5 +1,4 @@
-﻿
-namespace Persistance
+﻿namespace Persistance
 {
     public enum ValidityPeriod
     {

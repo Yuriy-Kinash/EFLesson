@@ -1,5 +1,4 @@
-﻿
-namespace Persistance.Repositories.Tariffs
+﻿namespace Persistance.Repositories.Tariffs
 {
     public class TariffDescriptionDto
     {
